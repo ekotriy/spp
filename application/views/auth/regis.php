@@ -22,13 +22,17 @@
                         <form method="POST" action="">
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="text" class="form-control" id="username" name="username" placeholder="Masukan Username">
-                                <small class="form-text text-muted"><?= form_error('username'); ?></small>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Masukan Username" value="<?= set_value('username'); ?>">
+                                <small class="form-text text-danger"><?= form_error('username'); ?></small>
                             </div>
                             <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Masukan Password">
-                                <small class="form-text text-muted"><?= form_error('password'); ?></small>
+                                <label for="password1">Password</label>
+                                <input type="password" class="form-control" id="password1" name="password1" placeholder="Masukan Password">
+                                <small class="form-text text-danger"><?= form_error('password1'); ?></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="password2">Ulangi Password</label>
+                                <input type="password" class="form-control" id="password2" name="password2" placeholder="Masukan Password">
                             </div>
                             <button type="submit" class="btn btn-info">Buat</button>
                         </form>

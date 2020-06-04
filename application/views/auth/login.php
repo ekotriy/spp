@@ -19,6 +19,7 @@
                 <div class="card shadow-lg mb-5 ">
                     <h5 class="card-header text-center">Login</h5>
                     <div class=" card-body">
+                        <?= $this->session->flashdata('massage'); ?>
                         <form method="POST" action="">
                             <div class="form-group">
                                 <label for="username">Username</label>
