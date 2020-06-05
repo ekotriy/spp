@@ -11,7 +11,8 @@ class Auth extends CI_Controller
     public function index()
     {
         $data['title'] = 'Login';
-        $this->load->view('auth/login', $data);
+        // $this->load->view('auth/login', $data);
+        $this->template->load('templates/login_temps', 'auth/login', $data);
     }
 
     public function regis()
@@ -26,7 +27,7 @@ class Auth extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $data['title'] = 'Buat Akun';
-            $this->load->view('auth/regis', $data);
+            $this->template->load('templates/login_temps', 'auth/regis', $data);
         } else {
             $username = $this->input->post('username', true);
             $password = $this->input->post('password1');
