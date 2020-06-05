@@ -13,7 +13,6 @@
 </head>
 
 <body class="bg-info">
-
     <?= $contents; ?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

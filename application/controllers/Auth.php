@@ -10,9 +10,50 @@ class Auth extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Login';
-        // $this->load->view('auth/login', $data);
-        $this->template->load('templates/login_temps', 'auth/login', $data);
+        if ($this->session->userdata('username')) {
+            redirect('');
+        }
+
+        $this->form_validation->set_rules('username', 'Username', 'trim|required');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required');
+
+
+        if ($this->form_validation->run() == FALSE) {
+            $data['title'] = 'Login';
+            $this->template->load('templates/login_temps', 'auth/login', $data);
+        } else {
+            $this->_login();
+        }
+    }
+
+    private function _login()
+    {
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+
+        $user = $this->db->get_where('users', ['username' => $username])->row_array();
+
+        // check if there is a username in the users table
+        if ($user) {
+            // check the password entered is the same as the users password table
+            if (password_verify($password, $user['password'])) {
+                $data = [
+                    'username' => $user['username'],
+                    'id_role' => $user['id_role']
+                ];
+                // check type id_role username in the users table
+                if ($user['id_role'] == 1) {
+                    redirect('admin');
+                }
+            } else {
+                $this->session->set_flashdata('massage', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
+                redirect('auth');
+            }
+        } else {
+            $this->session->set_flashdata('massage', '<div class="alert alert-danger" role="alert">
+            Username not found</div>');
+            redirect('auth');
+        }
     }
 
     public function regis()
@@ -23,7 +64,6 @@ class Auth extends CI_Controller
             'min_length' => 'Password too short'
         ]);
         $this->form_validation->set_rules('password2', 'Repeat Password', 'trim|required|matches[password1]');
-
 
         if ($this->form_validation->run() == FALSE) {
             $data['title'] = 'Buat Akun';
@@ -43,5 +83,14 @@ class Auth extends CI_Controller
             Congratulation! your account has been created</div>');
             redirect('auth');
         }
+    }
+
+    public function logout()
+    {
+        $this->session->unset_userdata('username');
+        $this->session->unset_userdata('id_role');
+
+        $this->session->set_flashdata('massage', '<div class="alert alert-success" role="alert">You have been logout</div>');
+        redirect('auth');
     }
 }

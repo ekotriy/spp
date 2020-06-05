@@ -4,7 +4,7 @@
             <div class="card shadow-lg mb-5 ">
                 <h5 class="card-header text-center">Buat Akun</h5>
                 <div class=" card-body">
-                    <form method="POST" action="">
+                    <form method="POST" action="" autocomplete="off">
                         <div class="form-group">
                             <label for="username">Username</label>
                             <input type="text" class="form-control" id="username" name="username" placeholder="Masukan Username" value="<?= set_value('username'); ?>">
