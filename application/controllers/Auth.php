@@ -10,8 +10,8 @@ class Auth extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('username')) {
-            redirect('');
+        if ($this->session->userdata('username', 'id_role' == 1)) {
+            redirect('home/indexs');
         }
 
         $this->form_validation->set_rules('username', 'Username', 'trim|required');
@@ -41,9 +41,10 @@ class Auth extends CI_Controller
                     'username' => $user['username'],
                     'id_role' => $user['id_role']
                 ];
+                $this->session->set_userdata($data);
                 // check type id_role username in the users table
                 if ($user['id_role'] == 1) {
-                    redirect('admin');
+                    redirect('home/indexs');
                 }
             } else {
                 $this->session->set_flashdata('massage', '<div class="alert alert-danger" role="alert">Wrong password!</div>');

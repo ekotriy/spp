@@ -16,7 +16,7 @@
                             <input type="password" class="form-control" id="password" name="password" placeholder="Masukan Password">
                             <small class="form-text text-danger"><?= form_error('password'); ?></small>
                         </div>
-                        <button type="submit" class="btn btn-info">Login</button>
+                        <button type="submit" name="submit" class="btn btn-info">Login</button>
                     </form>
                 </div>
             </div>

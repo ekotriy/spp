@@ -19,7 +19,7 @@
                             <label for="password2">Ulangi Password</label>
                             <input type="password" class="form-control" id="password2" name="password2" placeholder="Masukan Password">
                         </div>
-                        <button type="submit" class="btn btn-info">Buat</button>
+                        <button type="submit" name="submit" class="btn btn-info">Buat</button>
                     </form>
                 </div>
             </div>
