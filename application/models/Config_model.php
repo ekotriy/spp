@@ -37,4 +37,20 @@ class Config_model extends CI_Model
         $this->db->where('id_profil', 1);
         $this->db->update('profile', $data);
     }
+
+    // add new account in table users
+    public function setInsertAccount()
+    {
+        $username   = $this->input->post('username', true);
+        $password   = $this->input->post('password', true);
+        $id_role    = $this->input->post('role_id', true);
+
+        $data = [
+            'username'      => htmlspecialchars($username),
+            'password'      => password_hash($password, PASSWORD_DEFAULT),
+            'id_role'       => $id_role,
+            'date_created'  => time()
+        ];
+        return $this->db->insert('users', $data);
+    }
 }

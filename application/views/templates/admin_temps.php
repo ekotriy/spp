@@ -49,7 +49,7 @@
                         <div class="dropdown-menu mt-2">
                             <a class="dropdown-item" href="<?= base_url('config/setting'); ?>">Setting</a>
                             <a class="dropdown-item" href="#">User Guied</a>
-                            <a class="dropdown-item" href="#">Tambah Akun</a>
+                            <a class="dropdown-item" href="<?= base_url('config/tambahakun'); ?>">Tambah Akun</a>
                         </div>
                     </li>
                 </ul>

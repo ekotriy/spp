@@ -10,6 +10,7 @@ class Config extends CI_Controller
         $this->load->model('Config_model', 'confg');
     }
 
+    // feature setting profile school
     public function setting()
     {
         $this->form_validation->set_rules('sekolah', 'Nama Sekolah', 'trim|required');
@@ -31,6 +32,23 @@ class Config extends CI_Controller
         } else {
             $this->confg->setUpdateSettingById();
             redirect('config/setting');
+        }
+    }
+
+    // feature add new account
+    public function TambahAkun()
+    {
+        $this->form_validation->set_rules('username', 'Username', 'trim|required');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
+        $this->form_validation->set_rules('role_id', 'Status', 'trim|required');
+
+
+        if ($this->form_validation->run() == FALSE) {
+            $data['title'] = 'Tambah Akun';
+            $this->template->load('templates/admin_temps', 'config/tambah_akun', $data);
+        } else {
+            $this->confg->setInsertAccount();
+            redirect('home/indexs');
         }
     }
 }
